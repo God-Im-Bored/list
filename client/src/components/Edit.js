@@ -6,6 +6,16 @@ const Edit = ({ todo }) => {
     const updateDescription = async (e) => {
         e.preventDefault(e)
         try {
+
+          const body = { description }
+          const response = await fetch(`http://localhost:9000/todos/${todo.todo_id}`,
+            {
+              method: "PUT",
+              headers: { "Content-Type": "application/json"},
+              body: JSON.stringify(body)
+            })
+
+            window.location = '/'
             
         } catch(error) {
             console.error(error.message)
@@ -27,7 +37,7 @@ const Edit = ({ todo }) => {
           <div className="modal-content">
             <div className="modal-header">
               <h4 className="modal-title">Edit Task</h4>
-              <button type="button" className="close" data-dismiss="modal">
+              <button type="button" className="close" data-dismiss="modal" onClick={() => setDescription(todo.description)}>
                 &times;
               </button>
             </div>
