@@ -1,7 +1,6 @@
 const express = require("express");
 const cors = require("cors");
 const app = express();
-const PORT = 9000;
 const pool = require("./db");
 
 
@@ -97,7 +96,7 @@ app.delete("/todos/:id", async (req, res) => {
   }
 });
 
-app.listen(PORT, (err) => {
+app.listen(process.env.PORT || 9000, (err) => {
   if (err) consol.log(err);
-  console.log(`Listening on http://localhost:${PORT}`);
+  console.log('server is listening...')
 })
