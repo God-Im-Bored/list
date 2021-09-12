@@ -1,22 +1,26 @@
 import React, { Fragment, useState, useEffect } from "react";
-import Edit from "./Edit";
+import Edit from './Edit'
 
 const List = () => {
   const [todos, setTodos] = useState([]);
 
   const deleteTodo = async (id) => {
     const deletedTodo = await fetch(`http://localhost:9000/todos/${id}`, {
-      method: "DELETE",
-    });
+        method: "DELETE"
+    })
 
-    setTodos(todos.filter((todo) => todo.todo_id !== id));
-  };
+    setTodos(todos.filter(todo => todo.todo_id !== id))
+  }
 
   const getTodos = async () => {
     try {
-      const response = await fetch("http://localhost:9000/todos");
+      const response = await fetch("https://server-todo.herokuapp.com/todos");
+
+     
 
       const jsonData = await response.json();
+
+      
 
       setTodos(jsonData);
     } catch (error) {
@@ -41,16 +45,9 @@ const List = () => {
           {todos.map((todo) => (
             <tr key={todo.todo_id}>
               <td>{todo.description}</td>
+              <td><Edit todo={todo} /></td>
               <td>
-                <Edit todo={todo} />
-              </td>
-              <td>
-                <button
-                  className="btn btn-danger"
-                  onClick={() => deleteTodo(todo.todo_id)}
-                >
-                  Delete
-                </button>
+                <button className="btn btn-danger" onClick={() => deleteTodo(todo.todo_id)}>Delete</button>
               </td>
             </tr>
           ))}

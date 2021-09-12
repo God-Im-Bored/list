@@ -8,7 +8,7 @@ const Edit = ({ todo }) => {
         try {
 
           const body = { description }
-          const response = await fetch(`http://localhost:9000/todos/${todo.todo_id}`,
+          const response = await fetch(`https://server-todo.herokuapp.com/${todo.todo_id}`,
             {
               method: "PUT",
               headers: { "Content-Type": "application/json"},

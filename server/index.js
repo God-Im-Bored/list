@@ -43,6 +43,11 @@ app.post("/todos", async (req, res) => {
 app.get("/todos", async (req, res) => {
   try {
     const allTodos = await pool.query("SELECT * FROM todo");
+    
+    console.log('hi')
+
+    res.send('Todos List')
+
 
     res.json(allTodos.rows);
   } catch (error) {
@@ -98,5 +103,5 @@ app.delete("/todos/:id", async (req, res) => {
 
 app.listen(process.env.PORT || 9000, (err) => {
   if (err) consol.log(err);
-  console.log('server is listening...')
+  console.log('listening at ...')
 })
