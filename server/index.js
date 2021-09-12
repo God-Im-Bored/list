@@ -48,6 +48,8 @@ app.get("/todos", async (req, res) => {
 
     res.send('Todos List')
 
+    console.log(allTodos)
+
 
     res.json(allTodos.rows);
   } catch (error) {
